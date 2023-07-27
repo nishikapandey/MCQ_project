@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Exam</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+        }
+
+        .form-wrapper {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .form-wrapper h1 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-wrapper label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .form-wrapper input[type="text"],
+        .form-wrapper input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .form-wrapper input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-wrapper input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <h1>Create Exam</h1>
+            <form method="POST" action="{{ url_for('create_exam') }}">
+                <label for="name">Exam Name:</label>
+                <input type="text" id="name" name="name" placeholder='eg.pythonx' required><br>
+
+                <label for="duration">Duration (in minutes):</label>
+                <input type="number" id="duration" name="duration" required><br>
+
+                <h2>Questions:</h2>
+
+                {% for i in range(1, 2) %}
+                <label for="question{{ i }}">Question {{ i }}:</label>
+                <input type="text" id="question{{ i }}" name="question{{ i }}" required><br>
+
+                <label for="choice{{ i }}_1">Choice 1:</label>
+                <input type="text" id="choice{{ i }}_1" name="choice{{ i }}_1" required><br>
+
+                <label for="choice{{ i }}_2">Choice 2:</label>
+                <input type="text" id="choice{{ i }}_2" name="choice{{ i }}_2" required><br>
+
+                <label for="choice{{ i }}_3">Choice 3:</label>
+                <input type="text" id="choice{{ i }}_3" name="choice{{ i }}_3" required><br>
+
+                <label for="choice{{ i }}_4">Choice 4:</label>
+                <input type="text" id="choice{{ i }}_4" name="choice{{ i }}_4" required><br>
+
+                <label for="correct_answer{{ i }}">Correct Answer (1-4):</label>
+                <input type="number" id="correct_answer{{ i }}" name="correct_answer{{ i }}" min="1" max="4" required><br>
+                {% endfor %}
+
+                <input type="submit" value="Create Exam">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
